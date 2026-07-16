@@ -1,0 +1,15 @@
+{
+	"name": "rajeswari-adf-studio",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "425dd6f3-bb42-4caa-8251-31a3c0562c73",
+		"tenantId": "2ae11cb7-4c20-4921-8f30-a2c46145abb9"
+	}
+}

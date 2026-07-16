@@ -1,0 +1,16 @@
+{
+	"name": "LS_MySQL_CoreBanking1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "dim_account"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
