@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 7",
+	"properties": {
+		"content": {
+			"query": "--CREATE TABLE dim_customer_gold_scd1\nCREATE TABLE dbo.dim_customer_gold_scd1\n(\n    CUST_ID NVARCHAR(50),\n    NAME_MASKED NVARCHAR(200),\n    Risk_Score INT,\n    KYC_Status NVARCHAR(50),\n    updated_at DATETIME2\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    HEAP\n);\n\n--CREATE TABLE dim_account_gold_scd1\nCREATE TABLE dbo.dim_account_gold_scd1\n(\n    ACCOUNT_ID NVARCHAR(50) NOT NULL,\n    CUST_ID NVARCHAR(50),\n    TYPE NVARCHAR(50),\n    BALANCE DECIMAL(10,0),\n    STATUS NVARCHAR(20),\n    updated_at DATETIME2\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    HEAP\n);\n\n\n--CREATE TABLE dim_customer_gold_scd2\nCREATE TABLE dbo.dim_customer_gold_scd2\n(\n    CUST_ID VARCHAR(50),\n    NAME_MASKED VARCHAR(200),\n    Risk_Score INT,\n    KYC_Status VARCHAR(50),\n    updated_at DATETIME2,\n    start_at DATETIME2,\n    end_at DATETIME2\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    CLUSTERED COLUMNSTORE INDEX\n);\n\n--TABLE dim_account_gold_scd2\n\nCREATE TABLE dbo.dim_account_gold_scd2\n(\n    ACCOUNT_ID NVARCHAR(50) NOT NULL,\n    CUST_ID NVARCHAR(50),\n    TYPE NVARCHAR(50),\n    BALANCE DECIMAL(10,0),\n    STATUS NVARCHAR(20),\n    updated_at DATETIME2,\n    __START_AT DATETIME2,\n    __END_AT DATETIME2\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    HEAP\n);\n--MATERIALIZED VIEW\n\nCREATE MATERIALIZED VIEW dbo.mv_fraud_aggregates\nWITH\n(\n    DISTRIBUTION = HASH(merchant_cat)\n)\nAS\nSELECT\n    f.merchant_cat,\n    c.Risk_Score,\n    COUNT_BIG(f.txn_id) AS total_transactions,\n    SUM(ISNULL(f.amount,0)) AS total_amount,\n    COUNT_BIG(*) AS cb\nFROM dbo.fact_wide_transactions f\nINNER JOIN dbo.dim_customer_gold_scd1 c\nON f.CUST_ID = c.CUST_ID\nGROUP BY\n    f.merchant_cat,\n    c.Risk_Score;\n\n--FACT_WIDE_TRANSACTIONS\n\nCREATE TABLE dbo.fact_wide_transactions\n(\n    txn_id VARCHAR(50),\n    ACCOUNT_ID VARCHAR(50),\n    card_id VARCHAR(50),\n    amount FLOAT,\n    merchant_cat VARCHAR(100),\n    transaction_timestamp DATETIME2,\n    transaction_date DATE,\n    transaction_hour INT,\n    transaction_status VARCHAR(50),\n    amount_bucket VARCHAR(50),\n    silver_load_time DATETIME2,\n    CUST_ID VARCHAR(50),\n    NAME_MASKED VARCHAR(200),\n    Risk_Score INT,\n    KYC_Status VARCHAR(50),\n    TYPE VARCHAR(50),\n    BALANCE FLOAT,\n    STATUS VARCHAR(50),\n    gold_load_time DATETIME2,\n    rn INT\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    CLUSTERED COLUMNSTORE INDEX\n);\n\n--FACT_ACCOUNT_TRANSACTIONS\nCREATE TABLE dbo.fact_account_transactions\n(\n    transaction_date DATE,\n    ACCOUNT_ID VARCHAR(50),\n    total_transactions BIGINT,\n    total_amount FLOAT,\n    average_amount FLOAT,\n    successful_transactions BIGINT\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    CLUSTERED COLUMNSTORE INDEX\n);\n\n\n\n\nSELECT COUNT(*) \nFROM dbo.dim_customer_gold_scd1;\n\nSELECT COUNT(*) \nFROM dbo.dim_account_gold_scd1;\n\nSELECT COUNT(*) \nFROM dbo.fact_wide_transactions;\n\nSELECT *\nFROM dbo.mv_fraud_aggregates;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "bank_dw",
+				"poolName": "bank_dw"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
