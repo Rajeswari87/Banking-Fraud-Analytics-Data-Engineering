@@ -60,13 +60,13 @@ Azure Synapse Analytics
           |
           ▼
 Power BI Dashboard
-##Dashboard Pages:
+## Dashboard Pages:
 Fraud Overview
 Transaction Analysis
 Customer Risk Analysis
 Synapse MV Analytics
 
-##Key Insights:
+## Key Insights:
 Monitors overall transaction activity
 Identifies high-risk customers
 Analyzes fraud patterns
