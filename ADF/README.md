@@ -2,9 +2,9 @@
 
 ## Overview
 
-This folder contains the Azure Data Factory (ADF) pipelines used in the Banking Fraud Analytics project.
+This folder contains the Azure Data Factory (ADF) pipeline used in the Banking Fraud Analytics project.
 
-Azure Data Factory orchestrates data ingestion from the source system into Azure Data Lake Storage Gen2, providing the raw data required for downstream processing in Azure Databricks.
+Azure Data Factory orchestrates data ingestion from the source system into Azure Data Lake Storage Gen2 (ADLS Gen2), providing raw data for downstream processing in Azure Databricks.
 
 ---
 
@@ -14,9 +14,8 @@ Azure Data Factory orchestrates data ingestion from the source system into Azure
 - Linked Services
 - Datasets
 - Pipelines
-- Copy Activity
 - Lookup Activity
-- Get Metadata Activity
+- Copy Data Activity
 
 ---
 
@@ -39,21 +38,9 @@ Azure Data Factory orchestrates data ingestion from the source system into Azure
 The pipeline performs the following tasks:
 
 - Reads source data from MySQL
-- Extracts Customer and Account data
-- Loads raw data into ADLS Gen2
-- Supports incremental data ingestion
-- Prepares data for Azure Databricks processing
-
----
-
-## Files
-
-```text
-ADF/
-
-├── README.md
-└── PL_Ingest_CoreBanking.json
-```
+- Uses Lookup Activity to retrieve metadata or configuration
+- Copies source data to ADLS Gen2 using Copy Data Activity
+- Prepares raw data for Azure Databricks processing
 
 ---
 
@@ -76,18 +63,17 @@ Azure Databricks
 
 ## Features
 
-- Automated data ingestion
 - Pipeline orchestration
-- Linked Services
-- Dataset management
-- Incremental data loading
-- Cloud-based ETL
+- Lookup Activity
+- Copy Data Activity
+- Automated data ingestion
+- Cloud-based ETL workflow
 
 ---
 
 ## Key Achievements
 
-- Built an automated ingestion pipeline
+- Built an automated data ingestion pipeline
 - Loaded source data into ADLS Gen2
-- Enabled downstream Databricks processing
 - Integrated Azure Data Factory with Azure Data Lake Storage Gen2
+- Enabled downstream Databricks processing
