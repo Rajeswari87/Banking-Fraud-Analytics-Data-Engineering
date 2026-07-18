@@ -284,59 +284,6 @@ Unified-Financial-Risk-Lakehouse
 
 ---
 
-# 📸 Project Screenshots
-
-## Azure Data Factory Pipeline
-
-![ADF Pipeline](Screenshots/adf_pipeline.png)
-
----
-
-## Azure Data Lake Storage Gen2
-
-![ADLS Gen2](Screenshots/adls_storage.png)
-
----
-
-## Azure Databricks Workspace
-
-![Databricks Workspace](Screenshots/databricks_workspace.png)
-
----
-
-## Bronze Layer
-
-![Bronze Layer](Screenshots/bronze_layer.png)
-
----
-
-## Silver Layer
-
-![Silver Layer](Screenshots/silver_layer.png)
-
----
-
-## Gold Layer
-
-![Gold Layer](Screenshots/gold_layer.png)
-
----
-
-## Azure Synapse Analytics
-
-![Synapse](Screenshots/synapse_sql_pool.png)
-
----
-
-## Materialized View
-
-![Materialized View](Screenshots/materialized_view.png)
-
----
-
-## Power BI Dashboard
-
-![Power BI Dashboard](Screenshots/powerbi_dashboard.png)
 
 # 👩‍💻 Author
 
