@@ -1,9 +1,6 @@
-# Banking-Fraud-Analytics-Data-Engineering
-End-to-end Banking Fraud Analytics project using Azure Data Factory, ADLS Gen2, Databricks, Delta Lake, Azure Synapse and Power BI.
+# 🏦 Banking Fraud Analytics - Unified Financial Risk Lakehouse
 
-# 🏦 Unified Financial Risk Lakehouse
-
-## End-to-End Banking Fraud Analytics using Azure Data Engineering
+## End-to-End Azure Data Engineering Project
 
 ![Azure](https://img.shields.io/badge/Azure-Cloud-blue)
 ![Databricks](https://img.shields.io/badge/Azure-Databricks-red)
@@ -16,8 +13,7 @@ End-to-end Banking Fraud Analytics project using Azure Data Factory, ADLS Gen2, 
 ---
 
 # 📌 Project Overview
-
-The **Unified Financial Risk Lakehouse** is an end-to-end Azure Data Engineering project that demonstrates how banking transaction data is ingested, transformed, stored, and visualized using the Medallion Architecture (Bronze → Silver → Gold).
+The **Banking Fraud Analytics - Unified Financial Risk Lakehouse** is an end-to-end Azure Data Engineering project that demonstrates how banking transaction data is ingested, transformed, stored, and visualized using the Medallion Architecture (Bronze → Silver → Gold).
 
 The solution uses **Azure Data Factory** for orchestration, **Azure Data Lake Storage Gen2** for storage, **Azure Databricks (PySpark)** for data processing, **Azure Synapse Analytics** as the enterprise data warehouse, and **Power BI** for interactive dashboards.
 
@@ -37,30 +33,29 @@ The project implements:
 ---
 
 # 🏗️ Solution Architecture
-
-```
-Source Files
-     │
-     ▼
-Azure Data Factory
-     │
-     ▼
-Azure Data Lake Storage Gen2
-     │
-     ▼
-Azure Databricks
-Bronze → Silver → Gold
-     │
-     ▼
-Azure Synapse Analytics
-     │
-     ▼
-Materialized Views
-     │
-     ▼
-Power BI Dashboard
-```
-
+```text
+                 Banking Data Sources
+                         |
+                         |
+                 Azure Data Factory
+                         |
+                         |
+                 ADLS Gen2 Landing Zone
+                         |
+                         |
+              Azure Databricks Lakehouse
+                    |
+        -----------------------------
+        |             |             |
+     Bronze        Silver        Gold
+        |             |             |
+     Auto Loader   PySpark       SCD1/SCD2
+                         |
+                         |
+                 Azure Synapse SQL Pool
+                         |
+                         |
+                     Power BI
 ---
 
 # 🛠️ Technology Stack
@@ -113,6 +108,44 @@ Power BI Dashboard
 - Analytics Ready Data
 
 ---
+
+# 🔄 Data Processing Implementation
+
+## Bronze Processing
+- Auto Loader based ingestion
+- Schema evolution handling
+- Audit columns creation
+
+## Silver Processing
+- Data cleansing
+- Data type standardization
+- Duplicate handling
+- Watermark based streaming
+- Business rule validations
+- PII masking using hashing
+
+## Gold Processing
+- Fact and Dimension modeling
+- SCD Type 1 implementation
+- SCD Type 2 implementation
+- Delta MERGE operations
+- Analytics ready tables
+
+ ###  🗂️ Data Model
+
+## Dimension Tables
+
+- dim_customer_gold_scd1
+- dim_customer_gold_scd2
+- dim_account_gold_scd1
+- dim_account_gold_scd2
+
+
+## Fact Tables
+
+- fact_wide_transactions
+- fact_account_transactions
+- fact_realtime_customer_aggr
 
 # 📊 Features
 
