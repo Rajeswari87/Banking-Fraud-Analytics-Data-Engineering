@@ -34,28 +34,29 @@ The project implements:
 
 # 🏗️ Solution Architecture
 ```text
-                 Banking Data Sources
+                                  Banking Data Sources
                          |
                          |
                  Azure Data Factory
                          |
                          |
-                 ADLS Gen2 Landing Zone
+              ADLS Gen2 Landing Zone
                          |
                          |
-              Azure Databricks Lakehouse
-                    |
-        -----------------------------
-        |             |             |
-     Bronze        Silver        Gold
-        |             |             |
-     Auto Loader   PySpark       SCD1/SCD2
+             Azure Databricks Lakehouse
+                         |
+        ---------------------------------
+        |               |               |
+     Bronze          Silver           Gold
+        |               |               |
+  Auto Loader       PySpark        SCD1/SCD2
                          |
                          |
-                 Azure Synapse SQL Pool
+              Azure Synapse SQL Pool
                          |
                          |
                      Power BI
+```
 ---
 
 # 🛠️ Technology Stack
@@ -131,7 +132,7 @@ The project implements:
 - Delta MERGE operations
 - Analytics ready tables
 
- ###  🗂️ Data Model
+ # 🗂️ Data Model
 
 ## Dimension Tables
 
@@ -239,7 +240,7 @@ Power BI dashboards provide interactive fraud analytics, customer risk analysis,
 # 📁 Project Structure
 
 ```
-Unified-Financial-Risk-Lakehouse
+Banking-Fraud-Analytics-Data-Engineering
 │
 ├── ADF
 │
