@@ -17,6 +17,8 @@ The **Banking Fraud Analytics - Unified Financial Risk Lakehouse** is an end-to-
 
 The solution uses **Azure Data Factory** for orchestration, **Azure Data Lake Storage Gen2** for storage, **Azure Databricks (PySpark)** for data processing, **Azure Synapse Analytics** as the enterprise data warehouse, and **Power BI** for interactive dashboards.
 
+The architecture follows a Lakehouse approach using Delta Lake and Medallion Architecture to support scalable batch and streaming analytics.
+
 The project implements:
 
 - Azure Data Factory Pipeline
@@ -34,7 +36,7 @@ The project implements:
 
 # 🏗️ Solution Architecture
 ```text
-                                  Banking Data Sources
+                  Banking Data Sources
                          |
                          |
                  Azure Data Factory
@@ -132,7 +134,8 @@ The project implements:
 - Delta MERGE operations
 - Analytics ready tables
 
- # 🗂️ Data Model
+---
+# 🗂️ Data Model
 
 ## Dimension Tables
 
@@ -147,6 +150,8 @@ The project implements:
 - fact_wide_transactions
 - fact_account_transactions
 - fact_realtime_customer_aggr
+  
+---
 
 # 📊 Features
 
