@@ -135,7 +135,7 @@ Power BI Dashboard
 
 Azure Data Factory orchestrates the complete ETL workflow including metadata-driven ingestion, data copy, Databricks notebook execution, and failure handling.
 
-![ADF Pipeline](Screenshots/adf_pipeline.png)
+![ADF Pipeline](Documents/adf_pipeline.png)
 
 ---
 
